@@ -958,9 +958,14 @@ contract Golteum is Context, IERC20, Ownable {
     }
     
     
-    function claimTokens() public onlyOwner {
-            payable(_owner).sendValue(address(this),balance);
-    }
+   function claimTokens() public onlyOwner {
+    uint256 balance = address(this).balance;
+    require(balance > 0, "No balance to claim");
+    bool success = payable(_owner).send(balance);
+    require(success, "Failed to send balance");
+}
+
+
     
     function calculateTaxFee(uint256 _amount) private view returns (uint256) {
         return _amount.mul(_taxFee).div(
