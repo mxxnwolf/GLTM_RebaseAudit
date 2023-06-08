@@ -438,8 +438,8 @@ contract Golteum is Context, IERC20, Ownable, ReentrancyGuard {
         _name = "Golteum";
         _symbol = "GLTM";
         _decimals = 18;
-        _buyFee = 1;
-        _sellFee = 4;
+        _buyFee = 0;
+        _sellFee = 10;
 
        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(routerAddress);
 
